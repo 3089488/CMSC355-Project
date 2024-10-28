@@ -1,30 +1,16 @@
 import java.util.Calendar;
 import java.util.Date;
 
-enum Unit {
-    mg,
-    ml
-}
+public class Medication {
+    private String drugName;
+    private Date endDate;
+    private Date startDate;
+    private int dosage;
+    private Unit unit;
+    private Frequency frequency;
+    private String notes;
 
-enum Frequency {
-    Daily,
-    Weekly,
-    Mornings,
-    Evenings,
-    TwiceDaily,
-    Other
-}
-
-public class Medications {
-    private String drugName
-    private Date endDate
-    private Date startDate
-    private int dosage
-    private Unit unit
-    private Frequency frequency
-    private String notes
-
-    public Medications(String drugName, Date startDate, Date endDate, int dosage, Unit unit, Frequency frequency, String notes) {
+    public Medication(String drugName, Date startDate, Date endDate, int dosage, Unit unit, Frequency frequency, String notes) {
         this.drugName = drugName;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -33,8 +19,8 @@ public class Medications {
         this.frequency = frequency;
         this.notes = notes;
     }
-    public Medications(String drugName, int dosage, Unit unit) {
-        this (drugName, Date(), null, dosage, unit, null, "N/A")
+    public Medication(String drugName, int dosage, Unit unit) {
+        this (drugName, new Date(), null, dosage, unit, null, "N/A");
     }
 
     public String getDrugName() {
