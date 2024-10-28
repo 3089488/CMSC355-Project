@@ -1,3 +1,4 @@
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -20,7 +21,7 @@ public class Medication {
         this.notes = notes;
     }
     public Medication(String drugName, int dosage, Unit unit) {
-        this (drugName, new Date(), null, dosage, unit, null, "N/A");
+        this (drugName, new Date(), null, dosage, unit, null, null);
     }
 
     public String getDrugName() {
@@ -71,5 +72,22 @@ public class Medication {
 
     // Sprint 2
     public void setNotes(String notes) {}
+
+    public void print() {
+        String pattern = "MM-dd-yyyy";
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+        System.out.println(drugName + "(" + dosage + " " + unit + ")");
+        System.out.print("Started: " + simpleDateFormat.format(startDate));
+        if (endDate != null) {
+            System.out.print("    End Date: " + simpleDateFormat.format(endDate));
+        }
+        System.out.println();
+        if (frequency != null) {
+            System.out.println("Take " + frequency);
+        }
+        if (notes != null) {
+            System.out.println("Notes: " + notes);
+        }
+    }
 
 }
