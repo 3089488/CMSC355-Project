@@ -1,4 +1,4 @@
-package main;//import org.json.simple.JSONObject;
+package main;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,6 +9,7 @@ public class User{
 
     UUID uuid;
     File userDirectory;
+
     User(String name){
         this.uuid = UUID.nameUUIDFromBytes(name.getBytes());
 
