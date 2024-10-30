@@ -52,7 +52,6 @@ public class User{
      * Takes a new medication and appends it to the end of Current.json.
      * @param medication - The new medication to be added to Current.json.
      */
-    @SuppressWarnings("unchecked")
     public void addMedicine(Medication medication)
     {
         //This is JSONObject for the medicine we need to add.
