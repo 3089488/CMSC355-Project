@@ -38,7 +38,7 @@ public class myMedications {
             System.out.println("2. Previous Page");
             System.out.println("3. Next Page");
             System.out.println("4. History");
-            System.out.println("9. Exit");
+            System.out.println("9. Exit\n");
             userChoice = userInput.nextLine();
 
             switch (userChoice) {
@@ -53,6 +53,9 @@ public class myMedications {
                     break;
                 case "3":
                     currentMedicationIndex += 3;
+                    if (currentMedicationIndex > currentMedications.size()) {
+                        currentMedicationIndex = currentMedications.size() - 4; // Set position to be at the end of the arrayList, minus the length of what is printed.
+                    }
                     break;
                 case "4":
                     viewArchivedMedications();
@@ -64,6 +67,8 @@ public class myMedications {
                     System.out.println("Unknown choice, please try again.");
                     break;
             }
+
+            System.out.println();
         } while (looping);
     }
 
@@ -75,7 +80,8 @@ public class myMedications {
         do {
             System.out.println("1. Export");
             printMedication(currentMedicationIndex, 3, archivedMedications);
-            System.out.println("2. Next Page");
+            System.out.println("2. Previous Page");
+            System.out.println("3. Next Page");
             System.out.println("9. Back");
             userChoice = userInput.nextLine();
 
@@ -113,8 +119,12 @@ public class myMedications {
     }
 
     // Method to show medication information from the given arrayList
-    static int printMedication(int startIndex, int length, ArrayList<Medication> medications) {
+    public static int printMedication(int startIndex, int length, ArrayList<Medication> medications) {
         for (int i = startIndex; i < startIndex + length; i++) {
+            if (i > medications.size() || i < 0) {
+                System.out.println("Invalid index: " + i);
+                break;
+            }
             medications.get(i).print();
             System.out.println();
         }
