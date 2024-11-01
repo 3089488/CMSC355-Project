@@ -75,15 +75,22 @@ public class Medication {
     public void print() {
         String pattern = "MM-dd-yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        System.out.println(drugName + " (" + dosage + " " + unit + ")");
+
+        //Print first line
+        System.out.print(drugName + " (" + dosage + " " + unit + ")");
+        if (frequency != null) {
+            System.out.print("  > Take " + frequency);
+        }
+        System.out.println();
+
+        //Print second line
         System.out.print("Started: " + simpleDateFormat.format(startDate));
         if (endDate != null) {
             System.out.print("    End Date: " + simpleDateFormat.format(endDate));
         }
         System.out.println();
-        if (frequency != null) {
-            System.out.println("Take " + frequency);
-        }
+
+        //Print notes
         if (notes != null) {
             System.out.println("Notes: " + notes);
         }
