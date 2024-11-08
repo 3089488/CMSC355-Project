@@ -30,49 +30,49 @@ public class Medication {
     }
 
     // Sprint 2
-    public void setDrugName(String drugName) {}
+    public void setDrugName(String drugName) {this.drugName = drugName;}
 
     public Date getStartDate() {
         return this.startDate;
     }
 
     // Sprint 2
-    public void setStartDate(Date startDate) {}
+    public void setStartDate(Date startDate) {this.startDate = startDate;}
 
     public Date getEndDate() {
         return this.endDate;
     }
 
     // Sprint 2
-    public void setEndDate(Date endDate) {}
+    public void setEndDate(Date endDate) {this.endDate = endDate;}
 
     public int getDosage() {
         return this.dosage;
     }
 
     // Sprint 2
-    public void setDosage(int dosage) {}
+    public void setDosage(int dosage) {this.dosage = dosage;}
 
     public Unit getUnit() {
         return this.unit;
     }
 
     // Sprint 2
-    public void setUnit(Unit drugUnit) {}
+    public void setUnit(Unit drugUnit) {this.unit = drugUnit;}
 
     public Frequency getFrequency() {
         return this.frequency;
     }
 
     // Sprint 2
-    public void setFrequency(Frequency useFrequency) {}
+    public void setFrequency(Frequency useFrequency) {this.frequency = frequency;}
 
     public String getNotes() {
         return this.notes;
     }
 
     // Sprint 2
-    public void setNotes(String notes) {}
+    public void setNotes(String notes) {this.notes = notes;}
 
     public void print() {
         String pattern = "MM-dd-yyyy";

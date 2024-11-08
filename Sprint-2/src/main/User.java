@@ -20,6 +20,8 @@ import org.json.simple.parser.ParseException;
  */
 public class User{
 
+    private String username;
+
     private UUID uuid; //Unique User ID.
     private File userDirectory; //This stores the directory of the current user: ./Users/{UUID}
     private JSONObject medicationObject = new JSONObject(); //Helper JSONObject class, used to help with json structure.
@@ -36,6 +38,7 @@ public class User{
      */
     User(String name)
     {
+        this.username = name;
         this.uuid = UUID.nameUUIDFromBytes(name.getBytes());
 
         File usersDir = new File("Users");
@@ -109,10 +112,24 @@ public class User{
         }
     }
 
+    /**
+     * Edits the desired medication with new medication.
+     * @param index
+     * @param medication
+     */
+    public void editMedictionCurrent(int index, Medication medication)
+    {
+        this.currentMedications.replace(index, medication);
+    }
+
     public void addMedicineCurrent(Medication medication)
     {
         this.currentMedications.put(this.currentMedications.size(), medication);
     }
+
+    public HashMap<Integer, Medication> getCurrentMedications() {return this.currentMedications;}
+
+    public String getName(){return this.username;}
 
     /**
      * Takes a new medication and appends it to the end of Current.json.
@@ -144,26 +161,6 @@ public class User{
         }
     }
 
-    /**
-     * Returns a medicine by the given index.
-     * @param index - The index of the medicine to retrieve.
-     * @return
-     */
-    public Medication getMedicine(int index)
-    {
-        return this.currentMedications.get(index);
-    }
-
-    /**
-     * Returns a medicine by the given drug name.
-     * @param drugName - The name of the medicine to retrieve.
-     * @return
-     */
-    public Medication getMedicine(String drugName)
-    {
-        return null;
-    }
-
     /*
      * Just to confirm everything is working, can delete later and incorporate proper JUnit testing if needed.
      */
@@ -173,7 +170,7 @@ public class User{
 
         testUser.addMedicineCurrent(new Medication("Test", new Date(),
                 new Date(), 10, Unit.mg, Frequency.Daily, "This is a note!"));
-        testUser.addMedicineCurrent(new Medication("Test 2", new Date(),
+        testUser.editMedictionCurrent(0, new Medication("Test 2", new Date(),
                 new Date(System.currentTimeMillis() + 1000000), 15, Unit.ml, Frequency.Daily, "This is a note!"));
 
         testUser.saveCurrentMedications();
