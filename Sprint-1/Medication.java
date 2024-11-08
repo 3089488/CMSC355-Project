@@ -1,5 +1,4 @@
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class Medication {
@@ -76,7 +75,7 @@ public class Medication {
     public void print() {
         String pattern = "MM-dd-yyyy";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-        System.out.println(drugName + "(" + dosage + " " + unit + ")");
+        System.out.println(drugName + " (" + dosage + " " + unit + ")");
         System.out.print("Started: " + simpleDateFormat.format(startDate));
         if (endDate != null) {
             System.out.print("    End Date: " + simpleDateFormat.format(endDate));
