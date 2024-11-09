@@ -20,7 +20,7 @@ public class Main
         String input = sc.nextLine();
 
         user = new User(input);
-        System.out.printf("\nWelcome %s!\n\nPlease choose an option:\n(V) View Current Medications\n(A) Add New Medication \n(X) Exit\n", user.getName());
+        System.out.printf("\nWelcome %s!\n\nPlease choose an option:\n(V) View Current Medications\n(H) View Medication History\n(A) Add New Medication \n(E) Edit Medication\n(R) Remove Medication\n(C) Achieve Medication\n(X) Exit\n", user.getName());
         while(true)
         {
             input = sc.nextLine();
@@ -51,7 +51,7 @@ public class Main
                     break;
             }
 
-            System.out.printf("\nWelcome %s!\n\nPlease choose an option:\n(V) View Current Medications\n(A) Add New Medication \n(X) Exit\n", user.getName());
+            System.out.printf("\nWelcome %s!\n\nPlease choose an option:\n(V) View Current Medications\n(H) View Medication History\n(A) Add New Medication \n(E) Edit Medication\n(R) Remove Medication\n(C) Achieve Medication\n(X) Exit\n", user.getName());
         }
     }
 
