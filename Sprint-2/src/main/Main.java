@@ -13,6 +13,9 @@ public class Main
         menuLoop();
     }
 
+    /**
+     * Main loop for user menu and input.
+     */
     private static void menuLoop()
     {
         sc = new Scanner(System.in);
@@ -20,7 +23,7 @@ public class Main
         String input = sc.nextLine();
 
         user = new User(input);
-        System.out.printf("\nWelcome %s!\n\nPlease choose an option:\n(V) View Current Medications\n(H) View Medication History\n(A) Add New Medication \n(E) Edit Medication\n(R) Remove Medication\n(C) Achieve Medication\n(X) Exit\n", user.getName());
+        System.out.printf("\nWelcome %s!\n\nPlease choose an option:\n(V) View Current Medications\n(H) View Medication History\n(A) Add New Medication \n(E) Edit Medication\n(R) Remove Medication\n(C) Archive Medication\n(X) Exit\n", user.getName());
         while(true)
         {
             input = sc.nextLine();
@@ -51,10 +54,14 @@ public class Main
                     break;
             }
 
-            System.out.printf("\nWelcome %s!\n\nPlease choose an option:\n(V) View Current Medications\n(H) View Medication History\n(A) Add New Medication \n(E) Edit Medication\n(R) Remove Medication\n(C) Achieve Medication\n(X) Exit\n", user.getName());
+            System.out.printf("\nWelcome %s!\n\nPlease choose an option:\n(V) View Current Medications\n(H) View Medication History\n(A) Add New Medication \n(E) Edit Medication\n(R) Remove Medication\n(C) Archive Medication\n(X) Exit\n", user.getName());
         }
     }
 
+    /**
+     * Prompts the user for which medicine they want to choose to edit or replace
+     * @param replace - Boolean, true is if the user is replacing an entry, false for user deleting entry.
+     */
     private static void chooseMeds(boolean replace)
     {
         user.printMedicationsCurrent();
@@ -85,7 +92,17 @@ public class Main
             }
         }
     }
+
+    /**
+     * See changeMeds(boolean replace, int index);
+     */
     private static void changeMeds() {changeMeds(false, 0);}
+
+    /**
+     * Asks user for input on medication info to either add to or edit a medicine in Current.json.
+     * @param replace - boolean, true is for the user editing a medication, false is for a user adding a medication
+     * @param index - The index of what the user wants to change if replacing medication.
+     */
     private static void changeMeds(boolean replace, int index)
     {
         System.out.println("Enter Drug Name: ");
@@ -115,11 +132,14 @@ public class Main
             default -> Frequency.Other;
         };
 
+        System.out.println("Enter a note (optional): ");
 
-        Medication newMed = new Medication(drugName, new Date(), new Date(), Integer.parseInt(dosage), medUnit, frequency1, "");
+        String note = sc.nextLine();
 
-        System.out.printf("Is this correct? (Y/N)\nName: %s\nDosage: %d\nUnit: %s\nFrequency: %s\n",
-                drugName, Integer.parseInt(dosage), medUnit.toString(), frequency1.toString());
+        Medication newMed = new Medication(drugName, new Date(), new Date(), Integer.parseInt(dosage), medUnit, frequency1, note);
+
+        System.out.printf("Is this correct? (Y/N)\nName: %s\nDosage: %d\nUnit: %s\nFrequency: %s\nNote: %s\n",
+                drugName, Integer.parseInt(dosage), medUnit.toString(), frequency1.toString(), note);
 
         String response = sc.nextLine();
 
@@ -129,6 +149,9 @@ public class Main
         else user.editMedicineCurrent(index, newMed);
     }
 
+    /**
+     * Prints out current medication list.
+     */
     private static void printMedsCurrent()
     {
         if(user.getCurrentMedications().isEmpty())
@@ -143,6 +166,9 @@ public class Main
         }
     }
 
+    /**
+     * Prints out the medicine archive.
+     */
     private static void printMedsHistoric()
     {
         if(user.getHistoricalMedications().isEmpty())
@@ -157,6 +183,9 @@ public class Main
         }
     }
 
+    /**
+     * The menu prompting the user for which medication they want to archive.
+     */
     private static void archiveMeds()
     {
         System.out.println("Choose a medication to archive: ");

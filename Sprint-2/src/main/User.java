@@ -43,9 +43,7 @@ public class User{
         if (!usersDir.exists())
         {
             usersDir.mkdir();
-            System.out.println("Dir created.");
         }
-        else System.out.println("Dir already exists.");
 
         //Creates directory for specified user.
         this.userDirectory = new File("Users/" + this.uuid.toString());
@@ -129,6 +127,15 @@ public class User{
         }
     }
 
+    /**
+     * Returns the name of the user.
+     * @return String
+     */
+    public String getName(){return this.username;}
+
+    /**
+     * Prints out a numerical list of medications by name.
+     */
     public void printMedicationsCurrent()
     {
         for(int i = 0; i < this.currentMedications.size(); i++)
@@ -139,8 +146,8 @@ public class User{
 
     /**
      * Edits the desired medication with new medication.
-     * @param index
-     * @param medication
+     * @param index - Index of the medication we want to edit.
+     * @param medication - The modified medicine data to replace it with.
      */
     public void editMedicineCurrent(int index, Medication medication)
     {
@@ -148,12 +155,20 @@ public class User{
         saveCurrentMedications();
     }
 
+    /**
+     * Adds a new medication to our current medication list.
+     * @param medication - Medication to add.
+     */
     public void addMedicineCurrent(Medication medication)
     {
         this.currentMedications.put(this.currentMedications.size(), medication);
         saveCurrentMedications();
     }
 
+    /**
+     * Removes the desired medication by index.
+     * @param index - The index of the medication we want to remove.
+     */
     public void removeMedicineCurrent(int index)
     {
        HashMap<Integer, Medication> newList = this.currentMedications;
@@ -168,12 +183,14 @@ public class User{
        saveCurrentMedications();
     }
 
+    /**
+     * Gives us the list of current medications.
+     * @return HashMap
+     */
     public HashMap<Integer, Medication> getCurrentMedications() {return this.currentMedications;}
 
-    public String getName(){return this.username;}
-
     /**
-     * Takes a new medication and appends it to the end of Current.json.
+     * Saves the values of our currentMedications list to Current.json. Always overwrites the file.
      */
     public void saveCurrentMedications()
     {
@@ -202,6 +219,10 @@ public class User{
         }
     }
 
+    /**
+     * Adds a medicine to the medication archive and removes it from the current medication list.
+     * @param medication - Medication to archive.
+     */
     public void archiveMedicineHistory(Medication medication)
     {
         for(int i = 0; i < this.currentMedications.size(); i++)
@@ -217,10 +238,14 @@ public class User{
         saveHistoricalMedications();
     }
 
+    /**
+     * Returns the medication archive for the user.
+     * @return HashMap
+     */
     public HashMap<Integer, Medication> getHistoricalMedications() {return this.historicalMedications;}
 
     /**
-     * Takes a new medication and appends it to the end of Current.json.
+     * Saves the History.json file with the medicines in the historicalMedications list.
      */
     public void saveHistoricalMedications()
     {
